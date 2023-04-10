@@ -3,48 +3,16 @@ import './App.css';
 
 function App() {
     const [loading, setLoading] = useState(true);
-    const [coins, setCoins] = useState([]);
-    const [budget, setBudget] = useState('');
+    const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        fetch("https://api.coinpaprika.com/v1/tickers")
+        fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`)
             .then((response) => response.json())
-            .then((json) => {
-                setCoins(json);
-                setLoading(false);
-            });
+            .then((json) => console.log(json.data.movies))
     }, [])
-    // console.log(coins)
 
-    const onChange = (event) => {
-        setBudget(event.target.value);
-    }
-
-    return (
-        <div>
-            <h1>The Coins !
-                {loading
-                    ? ''
-                    : `(${coins.length})`}
-            </h1>
-            <input value={budget}
-                   onChange={onChange}
-                   type="text"
-                   placeholder="How much do you have?"/><br></br>
-
-            {loading
-                ? ""
-                : (<select>
-                    {coins.map((coin) => (
-                        <option> {coin.name} ({coin.symbol}) : You can
-                            buy {budget / coin.quotes.USD.price} {coin.symbol} with
-                            your money.
-                        </option>
-                    ))}
-                </select>)
-            }
-        </div>
-    )
+    return <div>
+        {loading ? <h1>Loading.....</h1> : null} </div>;
 };
 
 export default App;
