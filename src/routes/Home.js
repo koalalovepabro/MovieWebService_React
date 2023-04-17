@@ -15,7 +15,7 @@ function Home() {
     useEffect(() => {
         getMovies();
     }, [])
-    console.log(movies)
+    // console.log(movies)
 
     return (<div>
             {loading ? <h1>Loading.....</h1> : (<div>
