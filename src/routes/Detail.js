@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import styles from './Detail.module.css';
 
 function Detail() {
     const {tomato} = useParams()
@@ -23,19 +24,29 @@ function Detail() {
     }, [])
 
     return (
-        <div>
+        <div className={styles.container}>
             {loading
-                ? <h1> Loading...</h1>
-                : (<div>
-                        <a href ={data.url}>
-                            <h2 > {data.title} </h2>
+                ? (
+                    <div className={styles.loader}>
+                        <h1> Loading...</h1>
+                    </div>
+                )
+                : (
+                    <div className={styles.detail}>
+                        <a href={data.url}>
+                            <h2 className={styles.detail__title}> {data.title} </h2>
                         </a>
                         <img src={data.medium_cover_image}/>
-                        <h4> Year: {data.year}</h4>
+                        <h4 className={styles.detail__year}> Year: {data.year}</h4>
                         <h4> Rating: {data.rating}</h4>
-                        <h4> Genres: {data.genres.map((i) => (`${i}. `))} </h4>
-                        <h4>Description</h4>
-                        <p>{data.description_full}</p>
+
+                        <label className={styles.detail__subtitle}>Genres</label>
+                        <ul className={styles.detail__contents}>
+                            {data.genres.map((i) => <li key={i}>{i}</li>)}
+                        </ul>
+
+                        <label className={styles.detail__subtitle}>Description</label>
+                        <p className={styles.detail__contents}>{data.description_full}</p>
                     </div>
                 )
             }
