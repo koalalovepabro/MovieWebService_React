@@ -35,6 +35,7 @@ function Home() {
                             genres={movie.genres}
                             key={movie.id}
                             id={movie.id}
+                            year={movie.year}
                         />))}
                     </div>
 
