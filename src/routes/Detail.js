@@ -28,7 +28,7 @@ function Detail() {
                 ? <h1> Loading...</h1>
                 : (<div>
                         <a href ={data.url}>
-                            <h1 > {data.title} </h1>
+                            <h2 > {data.title} </h2>
                         </a>
                         <img src={data.medium_cover_image}/>
                         <h4> Year: {data.year}</h4>
